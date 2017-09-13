@@ -106,10 +106,13 @@ class poloniex:
     def returnOpenOrders(self, currencyPair):
         return self.api_query("returnOpenOrders", {'currencyPair': currencyPair})
 
-    # Returns personal trade history between two currencies, the limit decides
-    # how many trades are returns
-    def returnTradeHistory(self, currencyPair, limit):
-        return self.api_query("returnTradeHistory", {'limit': limit})
+    # Returns personal trade history between two currencies
+    def returnTradeHistory(self, currencyPair):
+        return self.api_query('returnTradeHistory',
+                             {'currencyPair': currencyPair,
+                              'limit': '500',
+                              'start': str(int((time.time()-1209600))),
+                              'end': str(int(time.time())), 'limit': '500'})
 
     # Returns the chart data for the given currecy pair
     # This requires the following
